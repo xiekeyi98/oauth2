@@ -310,11 +310,12 @@ func (s *Server) ValidationTokenRequest(r *http.Request) (gt oauth2.GrantType, t
 		return
 	}
 
-	clientID, clientSecret, err := s.ClientInfoHandler(r)
-	if err != nil {
-		return
-	}
-
+	// clientID, clientSecret, err := s.ClientInfoHandler(r)
+	// if err != nil {
+	// 	return
+	// }
+	clientID := r.FormValue("client_id")
+	clientSecret := r.FormValue("client_secret")
 	tgr = &oauth2.TokenGenerateRequest{
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
